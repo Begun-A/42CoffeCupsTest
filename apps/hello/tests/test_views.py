@@ -1,12 +1,12 @@
-from datetime import datetime
-
 from django.test import TestCase, Client
 from django.core.urlresolvers import reverse
 
 from ..models import Contact
 
+
 class TestContactData(TestCase):
-    """Tests contact_data view"""
+    """Tests contact_data view
+    """
     fixtures = ['initial_data.json']
 
     def setUp(self):
@@ -16,12 +16,14 @@ class TestContactData(TestCase):
         self.client = Client()
 
     def test_fixtures(self):
-        """Test, if db has more then 1 enter"""
-        self.assertEqual(Contact.objects.count(),1)
+        """Test, if db has more then 1 enter
+        """
+        self.assertEqual(Contact.objects.count(), 1)
 
     def test_contact_data(self):
-        """Test response contact data """
+        """Test response contact data
+        """
         response = self.client.get(self.url)
-        self.assertEqual(response.status_code,200)
+        self.assertEqual(response.status_code, 200)
         contact = Contact.objects.first()
-        self.assertEqual(contact,response.context['contact'])
+        self.assertEqual(contact, response.context['contact'])

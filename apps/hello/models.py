@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 class Contact(models.Model):
     class Meta:
@@ -13,7 +14,7 @@ class Contact(models.Model):
     name = models.CharField(max_length=20, blank=False, )
     surname = models.CharField(max_length=20, blank=True, default='', )
     birth_date = models.DateField(blank=False, verbose_name=u'Data of birth',
-                             null=True, )
+                                  null=True, )
     photo = models.ImageField(blank=True, null=True, upload_to='images')
     email = models.EmailField(blank=False, verbose_name=u'Email', null=False)
     skype = models.CharField(max_length=20, blank=True, null=True, )
