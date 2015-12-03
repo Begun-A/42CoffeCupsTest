@@ -10,4 +10,4 @@ class ContactModelTests(TestCase):
     # Tests unicode method of Contact model
     def test_unicode(self):
         contact = Contact(name='John', surname='Snow')
-        self.assertEqual(unicode(contact), u'Johm Snow')
+        self.assertEqual(unicode(contact), u'John Snow')

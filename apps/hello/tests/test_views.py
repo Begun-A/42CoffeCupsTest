@@ -11,7 +11,7 @@ class TestContactData(TestCase):
 
     def setUp(self):
         # remember url
-        self.url = reverse('contact_data')
+        self.url = reverse('contact')
         # remember test browser
         self.client = Client()
 
@@ -23,15 +23,5 @@ class TestContactData(TestCase):
         """Test response contact data """
         response = self.client.get(self.url)
         self.assertEqual(response.status_code,200)
-
         contact = Contact.objects.first()
-
-        self.assertIn(contact.name, response.content)
-        self.assertIn(contact.surname, response.content)
-        self.assertIn(contact.birth_day, response.content)
-        self.assertIn(contact.bio, response.content)
-        self.assertIn(contact.email, response.content)
-        self.assertIn(contact.jabber, response.content)
-        self.assertIn(contact.other, response.content)
-        self.assertIn(contact.skype, response.content)
-        self.assertIn(contact.photo, response.content)
+        self.assertEqual(contact,response.context['contact'])
