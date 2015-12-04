@@ -9,48 +9,29 @@
 
 {% block content %}
     <div class="container">
+        <div class="row">
+            <div class="col-md-12"><h3>42 Coffee Cups Test Assignment</h3></div>
+        </div>
         </br>
+        <div class="row">
         <div class="col-md-6">
-            <div class="col-md-12"><b>Name: </b><span
-                    id="first_name">{{ contact.name }}</span></div>
-            <div class="col-md-12"><b>Last name: </b><span
-                    id="last_name">{{ contact.surname }}</span></div>
-            <div class="col-md-12"><b>Date of birth: </b><span id="birth_date">{{ contact.birth_date|date:"Y-m-d" }}</span>
-            </div>
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-2"><b>Photo: </b></div>
-                    <div class="col-md-3">
-                        {% if contact.photo %}
-                            <img clas="img-responsive"
-                                 src="{{ MEDIA_URL }}{{ contact.photo }}"
-                                 width="60" height="60"/>
-                        {% endif %}</div>
-                </div>
-            </div>
-            <div class="col-md-12"><b>Bio: </b><br><span
-                    id="bio">{{ contact.bio }}</span></div>
-
+            <div><span id="first_name">{{ contact.name }}</span></div>
+            <div><span id="last_name">{{ contact.surname }}</span></div>
+            <div><span id="birth_date">{{ contact.birth_date|date:"Y-m-d" }}</span></div>
+            <div><b>Bio: </b><br><span id="bio">{{ contact.bio }}</span></div>
         </div>
         <div class="col-md-6">
-            <div class="col-md-12"><b>Contacts</b></div>
-            <div class="col-md-12"><b>Email: </b><span
+            <div><b>Contacts</b></div>
+            <div><b>Email: </b><span
                     id="email">{{ contact.email }}</span></div>
-            <div class="col-md-12"><b>Jabber: </b><span
+            <div><b>Jabber: </b><span
                     id="jabber">{{ contact.jabber }}</span></div>
-            <div class="col-md-12"><b>Skype: </b><span
+            <div><b>Skype: </b><span
                     id="skype">{{ contact.skype }}</span></div>
-            <div class="col-md-12"><b>Other contacts: </b><br><span
+            <div><b>Other contacts: </b><br><span
                     id="other">{{ contact.other }}</span>
             </div>
         </div>
-    </div>
-    </br>
-    <div class="container">
-        <div class="col-md-6">
-            <a href="" class="btn btn-primary">Edit data</a>
         </div>
     </div>
-
-    <hr>
 {% endblock content %}

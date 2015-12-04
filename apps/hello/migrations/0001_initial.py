@@ -14,7 +14,6 @@ class Migration(SchemaMigration):
             ('name', self.gf('django.db.models.fields.CharField')(max_length=20)),
             ('surname', self.gf('django.db.models.fields.CharField')(default='', max_length=20, blank=True)),
             ('birth_date', self.gf('django.db.models.fields.DateField')(null=True)),
-            ('photo', self.gf('django.db.models.fields.files.ImageField')(max_length=100, null=True, blank=True)),
             ('email', self.gf('django.db.models.fields.EmailField')(max_length=75)),
             ('skype', self.gf('django.db.models.fields.CharField')(max_length=20, null=True, blank=True)),
             ('jabber', self.gf('django.db.models.fields.EmailField')(max_length=75)),
@@ -39,7 +38,6 @@ class Migration(SchemaMigration):
             'jabber': ('django.db.models.fields.EmailField', [], {'max_length': '75'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '20'}),
             'other': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True', 'blank': 'True'}),
-            'photo': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
             'skype': ('django.db.models.fields.CharField', [], {'max_length': '20', 'null': 'True', 'blank': 'True'}),
             'surname': ('django.db.models.fields.CharField', [], {'default': "''", 'max_length': '20', 'blank': 'True'})
         }

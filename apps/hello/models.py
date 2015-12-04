@@ -15,7 +15,6 @@ class Contact(models.Model):
     surname = models.CharField(max_length=20, blank=True, default='', )
     birth_date = models.DateField(blank=False, verbose_name=u'Data of birth',
                                   null=True, )
-    photo = models.ImageField(blank=True, null=True, upload_to='images')
     email = models.EmailField(blank=False, verbose_name=u'Email', null=False)
     skype = models.CharField(max_length=20, blank=True, null=True, )
     jabber = models.EmailField()

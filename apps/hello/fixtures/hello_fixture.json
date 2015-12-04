@@ -1,34 +1,33 @@
 [
 {
-    "pk": 1,
-    "model": "auth.user",
+    "pk": 1, 
+    "model": "auth.user", 
     "fields": {
-        "username": "admin",
-        "first_name": "",
-        "last_name": "",
-        "is_active": true,
-        "is_superuser": true,
-        "is_staff": true,
-        "last_login": "2015-12-02T13:40:21.778Z",
-        "groups": [],
-        "user_permissions": [],
-        "password": "pbkdf2_sha256$12000$HG6vcBo9DqGc$8+GiOK9Qksm9rNF1Jj2/rIM5sdXlbrzvUdpXd612eOI=",
-        "email": "admin@admin.com",
-        "date_joined": "2015-12-02T13:38:21.238Z"
+        "username": "admin", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": true, 
+        "is_staff": true, 
+        "last_login": "2015-12-04T14:21:32.373Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$12000$6C6Cec2PjpZF$wpBtuZ0s2YctIzrjs5OFp7erGcfBpt165f9o3pxxhEY=", 
+        "email": "admin@admin.com", 
+        "date_joined": "2015-12-04T14:04:11.264Z"
     }
 },
 {
-    "pk": 1,
-    "model": "hello.contact",
+    "pk": 1, 
+    "model": "hello.contact", 
     "fields": {
-        "bio": "About 1 year of experiance in programing. I was engaged in to the web based project development where I was responsible for the server part of the aplication.\r\nI'm looking for the interesting projects. I'm on the start of my career path and my personal technical growth is in highest priority for me right now.",
-        "surname": "Bigun",
-        "name": "Oleksandr",
-        "photo": "images/bIW4YgWie4k.jpg",
-        "other": "getbarista: Begun-A",
-        "skype": "s-bigun",
-        "birth_date": "1992-10-19",
-        "jabber": "begun-a@khavr.com",
+        "bio": "About 1 year of experiance in programing. I was engaged in to the web based project development where I was responsible for the server part of the aplication.I'm looking for the interesting projects. I'm on the start of my career path and my personal technical growth is in highest priority for me right now.", 
+        "surname": "Bigun", 
+        "name": "Oleksandr", 
+        "other": "getbarista: Begun-A", 
+        "skype": "s-bigun", 
+        "birth_date": "1992-10-19", 
+        "jabber": "begun-a@khavr.com", 
         "email": "a.begun@live.com"
     }
 }
