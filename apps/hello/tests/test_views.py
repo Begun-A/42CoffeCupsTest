@@ -7,7 +7,7 @@ from ..models import Contact
 class TestContactData(TestCase):
     """Tests contact_data view
     """
-    fixtures = ['initial_data.json']
+    fixtures = ['hello_fixture.json']
 
     def setUp(self):
         # remember url
