@@ -20,3 +20,6 @@ class Contact(models.Model):
     jabber = models.EmailField()
     other = models.CharField(max_length=50, blank=True, null=True, )
     bio = models.TextField(max_length=256, blank=True, null=True)
+
+class Request(models.Model):
+    pass
