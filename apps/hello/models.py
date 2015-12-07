@@ -21,5 +21,15 @@ class Contact(models.Model):
     other = models.CharField(max_length=50, blank=True, null=True, )
     bio = models.TextField(max_length=256, blank=True, null=True)
 
-class Request(models.Model):
-    pass
+
+class RequestLog(models.Model):
+    class Meta:
+        db_table = 'RequestLog'
+
+    def __unicode__(self):
+        return u'{0} {1} {2}'.format(self.pk, self.method, self.path)
+
+    method = models.CharField(max_length=20)
+    path = models.CharField(max_length=1024)
+    remote_addr = models.IPAddressField()
+    time = models.DateTimeField(auto_now=True)

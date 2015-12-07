@@ -5,7 +5,7 @@ from ..models import Contact
 
 
 class TestContactData(TestCase):
-    """Tests contact_data view
+    """Tests contact page
     """
     fixtures = ['hello_fixture.json']
 
