@@ -9,7 +9,7 @@ class ContactModelTests(TestCase):
     """
 
     def test_unicode_contact(self):
-        """Test unicode Contact model
+        """Test unicode contact model
         """
         contact = Contact(name='John', surname='Snow')
         self.assertEqual(unicode(contact), u'John Snow')
