@@ -7,7 +7,6 @@ from ..models import Contact
 class ContactModelTests(TestCase):
     """Test Contact model
     """
-    # Tests unicode method of Contact model
     def test_unicode(self):
         """Test unicode Contact model
         """
