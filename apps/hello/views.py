@@ -1,6 +1,9 @@
+# Create your views here.
+
 from django.shortcuts import render
 
-from apps.hello.models import Contact
+from apps.hello.models import Contact, RequestLog
+# Create your views here.
 
 
 def contact_data(request):
@@ -10,4 +13,5 @@ def contact_data(request):
 
 
 def requests(request):
-    return render(request, 'requests.html', {})
+    request_log = RequestLog.objects.order_by('time').reverse()[:10]
+    return render(request, 'requests.html', {'request_log': request_log})
