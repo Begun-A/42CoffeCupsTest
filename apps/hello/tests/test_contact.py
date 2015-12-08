@@ -54,4 +54,3 @@ class TestContactData(TestCase):
         response = self.client.get(self.url)
         self.assertEqual(contacts, None)
         self.assertEqual(contacts, response.context['contact'])
-
