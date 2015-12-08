@@ -18,5 +18,5 @@ class Contact(models.Model):
     email = models.EmailField(blank=False, verbose_name=u'Email', null=False)
     skype = models.CharField(max_length=20, blank=True, null=True, )
     jabber = models.EmailField()
-    other = models.CharField(max_length=50, blank=True, null=True, )
+    other = models.TextField(max_length=50, blank=True, null=True, )
     bio = models.TextField(max_length=256, blank=True, null=True)

@@ -8,6 +8,8 @@ class ContactModelTests(TestCase):
     """Test Contact model
     """
     # Tests unicode method of Contact model
-    def test_unicode(self): # flake8: noqa
+    def test_unicode(self):
+        """Test unicode Contact model
+        """
         contact = Contact(name='John', surname='Snow')
         self.assertEqual(unicode(contact), u'John Snow')

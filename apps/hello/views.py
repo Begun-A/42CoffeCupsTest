@@ -1,9 +1,6 @@
-# Create your views here.
-
 from django.shortcuts import render
 
 from apps.hello.models import Contact
-# Create your views here.
 
 
 def contact_data(request):
