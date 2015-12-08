@@ -11,4 +11,4 @@ class ContactModelTests(TestCase):
         """Test unicode Contact model
         """
         contact = Contact(name='Jon', surname='Snow')
-        self.assertEqual(unicode(contact), u'John Snow')
+        self.assertEqual(unicode(contact), u'Jon Snow')
