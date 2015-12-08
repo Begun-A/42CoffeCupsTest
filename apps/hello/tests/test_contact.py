@@ -31,7 +31,7 @@ class TestContactData(TestCase):
     def test_more_then_one_entry_in_db(self):
         """Test contact view, when more then one entry in db
         """
-        Contact.objects.create(name='Jon',
+        Contact.objects.create(name='John',
                                surname='Snow',
                                birth_date='1992-12-01',
                                email='snow.j@gmail.com',
