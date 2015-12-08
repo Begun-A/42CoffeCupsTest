@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}42ccTest{% endblock title %}
+
+{% block extra_head %}
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css">
+    <script src="{% static "js/main.js" %}"></script>
+{% endblock extra_head %}
+
+{% block content %}
+    <h1>Requests</h1>
+    <div id='div_table1'>
+    <table class="table table-hover table-striped" id="req-table">
+        <thead>
+        <tr>
+            <th>10 Last Requests</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for req in request_log %}
+            <tr>
+                <td>{{ req.method }}</td>
+                <td>{{ req.path }}</td>
+                <td>{{ req.time }}</td>
+                <td>{{ req.remote_addr }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+{% endblock %}

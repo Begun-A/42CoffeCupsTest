@@ -5,7 +5,7 @@ from ..models import Contact
 
 
 class TestContactData(TestCase):
-    """Tests contact_data view
+    """Tests contact page
     """
     fixtures = ['hello_fixture.json']
 
@@ -16,7 +16,7 @@ class TestContactData(TestCase):
         self.client = Client()
 
     def test_fixtures(self):
-        """Test, if db has more then 1 enter
+        """Test, if db has more then one enter
         """
         self.assertEqual(Contact.objects.count(), 1)
 
