@@ -11,7 +11,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6"><h3>42 Coffee Cups Test Assignment</h3></div>
-            <div class="col-md-6" id='login'><a href="{% url 'contact' %}">Login</a></div>
+            <div class="col-md-6" id='login'><a
+                    href="{% url 'contact' %}">Login</a></div>
         </div>
         </br>
         {% if contact %}
@@ -19,9 +20,13 @@
                 <div class="col-md-6">
                     <div><span id="first_name">{{ contact.name }}</span></div>
                     <div><span id="last_name">{{ contact.surname }}</span></div>
-                    <div><span id="birth_date">{{ contact.birth_date|date:"Y-m-d" }}</span>
+                    <div><span
+                            id="birth_date">{{ contact.birth_date|date:"Y-m-d" }}</span>
                     </div>
-                    <div><b>Photo: </b><br><span id="bio"></span></div>
+                    <div><b>Photo: </b><br>
+                        {% if contact.photo %}
+                            <img src="{{ MEDIA_URL }}{{ contact.photo }}" width="200" height="200" />
+                        {% endif %}</div>
                 </div>
                 <div class="col-md-6">
                     <div><b>Contacts</b></div>
@@ -33,8 +38,10 @@
                             id="skype">{{ contact.skype }}</span></div>
                     <div><b>Other contacts: </b><br><span
                             id="other">{{ contact.other|linebreaks }}</span>
-                    <div><b>Bio: </b><br><span
-                            id="bio">{{ contact.bio|linebreaks }}</span></div>
+
+                        <div><b>Bio: </b><br><span
+                                id="bio">{{ contact.bio|linebreaks }}</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -43,7 +50,8 @@
         {% endif %}
         <hr>
         <div class="row">
-            <div class="col-md-6"><a href="{% url 'requests' %}">requests</a></div>
+            <div class="col-md-6"><a href="{% url 'requests' %}">requests</a>
+            </div>
         </div>
     </div>
 

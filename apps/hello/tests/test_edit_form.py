@@ -10,7 +10,7 @@ class FormEditTest(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.url = reverse('form_edit', kwargs={'pk':1})
+        self.url = reverse('edit_form', kwargs={'id':1})
 
     def test_access_edit_form(self):
         """Check access edit form
