@@ -1,14 +1,17 @@
 function initAjaxForm() {
     $('#ajaxform').ajaxForm({
+        beforeSubmit: function(form, options) {
+            block_form();
+        },
         success: function () {
-            delete_errorlist();
+            unblock_form();
             $("#success").show();
             setTimeout(function () {
                 $("#success").hide();
             }, 5000);
         },
         error: function (response) {
-            delete_errorlist();
+            unblock_form();
             $("#form_error").show();
             var errors = JSON.parse(response.responseText);
             for (error in errors) {
@@ -25,10 +28,18 @@ function initAjaxForm() {
         }
     });
 }
-function delete_errorlist() {
-        $('.errorlist').remove();
-    }
+function block_form() {
+        $("#loading").show();
+        $('textarea').attr('disabled', 'disabled');
+        $('input').attr('disabled', 'disabled');
+}
 
+function unblock_form() {
+    $('#loading').hide();
+    $('textarea').removeAttr('disabled');
+    $('input').removeAttr('disabled');
+    $('.errorlist').remove();
+}
 function readURL() {
     var input = this;
     if (input.files && input.files[0]) {
