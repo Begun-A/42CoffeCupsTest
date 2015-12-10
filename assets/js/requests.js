@@ -1,16 +1,11 @@
 var lost_focus, count = 0, title = document.title;
 function initUpdateRequests() {
 
-    var link = $(this);
     $.ajax({
-        'url': link.attr('href'),
+        'url': window.location.href,
         'type': 'GET',
         'dataType': "html",
         'success': function (data, status, xhr) {
-            if (status != 'success') {
-                alert('Error on the server');
-                return false;
-            }
             var table = $('#div_table1'), html = $(data), new_table = html.find('table');
             var n = new_table.find('#request-id').html() - table.find('#request-id').html();
             table.find('table').html(new_table.html());
@@ -20,7 +15,7 @@ function initUpdateRequests() {
                     document.title = title
                 }
                 else {
-                    document.title = count.toString() + ' New ' + title;
+                    document.title = '(' + count.toString() + ')' + title;
                 }
             }
             else {
@@ -30,10 +25,8 @@ function initUpdateRequests() {
         },
         'error': function () {
             alert('Error on the server');
-            return false;
         }
     });
-    return false
 }
 
 $(document).ready(function () {
