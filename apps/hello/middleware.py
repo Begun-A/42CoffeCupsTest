@@ -10,4 +10,3 @@ class RequestLogMiddleware(object):
             path=request.path,
             remote_addr=request.META['REMOTE_ADDR'],
         ).save()
-        return None
