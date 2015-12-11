@@ -57,3 +57,11 @@ class TestContactData(TestCase):
         response = self.client.get(self.url)
         self.assertEqual(contacts, None)
         self.assertEqual(contacts, response.context['contact'])
+
+    def test_temlate_login(self):
+        """Test temlate login elenets
+        """
+        response = self.client.get(reverse('login'))
+        self.assertContains(response, 'name="username"', 1)
+        self.assertContains(response, 'name="password"', 1)
+        self.assertContains(response, 'type="submit"', 1)

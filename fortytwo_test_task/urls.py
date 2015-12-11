@@ -3,6 +3,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic import RedirectView
 from django.contrib import admin
 from django.conf import settings
+
 admin.autodiscover()
 
 urlpatterns = patterns('apps.hello.views',
@@ -19,7 +20,8 @@ urlpatterns += patterns('',
                         url(r'^accounts/profile/$',
                             RedirectView.as_view(url='/')),
                         url(r'^accounts/logout/$',
-                            'django.contrib.auth.views.logout', name='logout'),
+                            'django.contrib.auth.views.logout',
+                            {'next_page': '/'}, name='logout'),
                         )
 
 urlpatterns += patterns('',

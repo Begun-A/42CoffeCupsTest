@@ -6,8 +6,8 @@ class CalendarWidget(forms.DateInput):
     class Media:
         css = {
             'all': (
-                'http://code.jquery.com/ui/1.10.4/themes/ui-dar\
-                kness/jquery-ui.css',)
+                'https://code.jquery.com/ui/1.11.3/' +
+                'themes/smoothness/jquery-ui.css',)
         }
         js = ('http://code.jquery.com/jquery-1.7.2.min.js',
               'http://code.jquery.com/ui/1.10.2/jquery-ui.js',)

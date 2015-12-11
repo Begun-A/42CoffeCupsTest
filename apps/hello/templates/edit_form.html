@@ -36,10 +36,14 @@
             </div>
             <div class="row">
                 <div class="col-md-5">
-                    <label for="id_photo">Photo:</label><div>{{ form.photo }}</div>
+                    <label for="id_photo">Photo:</label>
+
+                    <div>{{ form.photo }}</div>
                     </br>
                     {% if form.photo.value != '' %}
-                        <img class="image" src='{{ MEDIA_URL }}{{ form.photo.value }}' height="200" width="200">
+                        <img class="image"
+                             src='{{ MEDIA_URL }}{{ form.photo.value }}'
+                             height="200" width="200">
                     {% endif %}
                 </div>
                 <div class="col-md-7">
@@ -51,7 +55,7 @@
                 </div>
             </div>
             <div class="row">
-                 <div id="loading" style="display:none;">
+                <div id="loading" style="display:none;">
                     <span>loading...</span>
                 </div>
                 <div id="success" style="display:none;">
@@ -66,7 +70,7 @@
                        href="{% url 'contact' %}">Cancel</a>
                 </p>
         </form>
-            <hr>
+        <hr>
     </div>
     <a href="{% url 'requests' %}">requests</a>
 {% endblock %}
