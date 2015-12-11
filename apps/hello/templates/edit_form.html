@@ -22,7 +22,7 @@
                     <div class="row" align="right">
                         <div class="col-xs-3"><label for="id_name">Name:</label>
                         </div>
-                        <div class="col-xs-3">{{ form.name }}</div>
+                        <div class="col-xs-5"><p>{{ form.name }}</p></div>
                     </div>
                     </p>
 
@@ -31,7 +31,7 @@
                     <div class="row" align="right">
                         <div class="col-xs-3"><label for="id_surname">Last
                             name:</label></div>
-                        <div class="col-xs-3">{{ form.surname }}</div>
+                        <div class="col-xs-5"><p>{{ form.surname }}</p></div>
                     </div>
                     </p>
 
@@ -40,7 +40,7 @@
                     <div class="row" align="right">
                         <div class="col-xs-3"><label for="id_birth_date">Date of
                             birth:</label></div>
-                        <div class="col-xs-3">{{ form.birth_date }}</div>
+                        <div class="col-xs-5"><p>{{ form.birth_date }}<p></div>
                     </div>
                     </p>
                 </div>
@@ -50,7 +50,7 @@
                     <div class="row" align="right">
                         <div class="col-xs-3"><label
                                 for="id_email">Email:</label></div>
-                        <div class="col-xs-3">{{ form.email }}</div>
+                        <div class="col-xs-5"><p>{{ form.email }}</p></div>
                     </div>
                     </p>
 
@@ -59,7 +59,7 @@
                     <div class="row" align="right">
                         <div class="col-xs-3"><label
                                 for="id_jabber">Jabber:</label></div>
-                        <div class="col-xs-3">{{ form.jabber }}</div>
+                        <div class="col-xs-5"><p>{{ form.jabber }}</p></div>
                     </div>
                     </p>
 
@@ -68,7 +68,7 @@
                     <div class="row" align="right">
                         <div class="col-xs-3"><label
                                 for="id_skype">Skype:</label></div>
-                        <div class="col-xs-3">{{ form.skype }}</div>
+                        <div class="col-xs-5"><p>{{ form.skype }}</p></div>
                     </div>
                     </p>
                 </div>
@@ -77,7 +77,7 @@
                 <div class="col-md-5">
                     <label for="id_photo">Photo:</label>
 
-                    <div>{{ form.photo }}</div>
+                    <div><p>{{ form.photo }}</p></div>
                     </br>
                     {% if form.photo.value != '' %}
                         <img class="image"
@@ -93,9 +93,13 @@
                 </div>
                 <div class="col-md-7">
                     <p><label for="id_other">Other
-                        contacts:</label></br>{{ form.other }}</p>
+                        contacts:</label></br>
 
-                    <p><label for="id_bio">Bio:</label></br>{{ form.bio }}
+                    <p>{{ form.other }}</p></p>
+
+                    <p><label for="id_bio">Bio:</label></br>
+
+                    <p>{{ form.bio }}</p>
                     </p>
                 </div>
             </div>

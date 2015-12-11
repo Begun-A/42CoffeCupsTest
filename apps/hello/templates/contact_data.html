@@ -35,6 +35,12 @@
                         {% if contact.photo %}
                             <img src="{{ MEDIA_URL }}{{ contact.photo }}"
                                  width="200" height="200"/>
+                        {% else %}
+                            <table width='200px' border="2" height="200px">
+                                <tr align="right" valign="top">
+                                    <td></td>
+                                </tr>
+                            </table>
                         {% endif %}</div>
                 </div>
                 <div class="col-md-6">
