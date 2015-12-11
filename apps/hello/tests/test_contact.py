@@ -58,6 +58,25 @@ class TestContactData(TestCase):
         self.assertEqual(contacts, None)
         self.assertEqual(contacts, response.context['contact'])
 
+    def test_links(self):
+        """Test edit_form, requests, login, logout link on the contact page
+        """
+        contact = Contact.objects.first()
+
+        response = self.client.get(self.url)
+        self.assertContains(response, reverse('login'), 1)
+
+        self.client.login(username='admin', password='admin')
+        response = self.client.get(self.url)
+        self.assertContains(response,
+                            reverse('edit_form', kwargs={'id': contact.id}), 1)
+        self.assertContains(response, reverse('requests'), 1)
+        self.assertContains(response, reverse('logout'), 1)
+
+        self.client.logout()
+        response = self.client.get(self.url)
+        self.assertContains(response, reverse('login'), 1)
+
     def test_temlate_login(self):
         """Test temlate login elenets
         """
