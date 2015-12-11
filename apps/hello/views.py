@@ -1,12 +1,11 @@
-# Create your views here.
 import json
 
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseBadRequest
+from django.contrib.auth.decorators import login_required
 
 from apps.hello.models import Contact, RequestLog
 from forms import ContactForm
-# Create your views here.
 
 
 def contact_data(request):
@@ -20,6 +19,7 @@ def requests(request):
     return render(request, 'requests.html', {'request_log': request_log})
 
 
+@login_required
 def edit_form_contact(request, id):
     contacts = Contact.objects.get(pk=id)
     if request.POST:

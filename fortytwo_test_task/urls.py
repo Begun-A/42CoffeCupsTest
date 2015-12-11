@@ -1,5 +1,4 @@
 from django.conf.urls import patterns, include, url
-from django.contrib.auth.views import login
 from django.views.generic import RedirectView
 from django.contrib import admin
 
@@ -13,9 +12,15 @@ urlpatterns = patterns('apps.hello.views',
                        url(r'^requests/$', 'requests', name='requests'),
                        url(r'^edit_form/(?P<id>\d+)/$', 'edit_form_contact',
                            name='edit_form'),
-                       url(r'^accounts/profile/$', RedirectView.as_view(url='/')),
-                       url(r'^accounts/login/$', login, name='login')
                        )
+urlpatterns += patterns('',
+                        url(r'^accounts/login/$',
+                            'django.contrib.auth.views.login', name='login'),
+                        url(r'^accounts/profile/$',
+                            RedirectView.as_view(url='/')),
+                        url(r'^accounts/logout/$',
+                            'django.contrib.auth.views.logout', name='logout'),
+                        )
 
 if DEBUG:
     urlpatterns += patterns('',

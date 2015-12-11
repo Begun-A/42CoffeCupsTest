@@ -31,19 +31,22 @@ class TestContactData(TestCase):
     def test_more_then_one_entry_in_db(self):
         """Test contact view, when more then one entry in db
         """
-        Contact.objects.create(name='John',
-                               surname='Snow',
-                               birth_date='1992-12-01',
-                               email='snow.j@gmail.com',
-                               skype='j-snow',
-                               jabber='snow@khavr.com',
-                               other='Winterfell',
-                               bio='Jon Snow fights with white walker')
+        contact = Contact(name='John',
+                          surname='Snow',
+                          birth_date='1992-12-01',
+                          email='snow.j@gmail.com',
+                          skype='j-snow',
+                          jabber='snow@khavr.com',
+                          other='Winterfell',
+                          bio='Jon Snow fights with white walker')
+        contact.save()
         contacts = Contact.objects.all()
         self.assertEqual(Contact.objects.count(), 2)
         response = self.client.get(self.url)
         self.assertNotEqual(contacts[1], response.context['contact'])
         self.assertEqual(contacts[0], response.context['contact'])
+        self.assertContains(response, 'Skype:', 1)
+        self.assertNotContains(response, 'John')
 
     def test_no_data_in_db(self):
         """Test contact view, when no data in db
