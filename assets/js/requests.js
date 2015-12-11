@@ -20,7 +20,7 @@ function initUpdateRequests() {
                     document.title = title
                 }
                 else {
-                    document.title = count.toString() + ' New ' + title;
+                    document.title = '(' + count.toString() + ')' + title;
                 }
             }
             else {
