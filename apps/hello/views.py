@@ -10,7 +10,6 @@ from forms import ContactForm
 
 def contact_data(request):
     contact = Contact.objects.first()
-    print contact.id
     context = {'contact': contact}
     return render(request, 'contact_data.html', context)
 
