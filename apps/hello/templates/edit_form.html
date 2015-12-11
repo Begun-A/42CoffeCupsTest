@@ -17,29 +17,78 @@
               method="POST">{% csrf_token %}
             <div class="row">
                 <div class="col-md-6">
-                    <p><label for="id_name">Name:</label>{{ form.name }}</p>
+                    <p>
 
-                    <p><label for="id_surname">Last
-                        name:</label>{{ form.surname }}</p>
-
-                    <p><label for="id_birth_date">Date of
-                        birth:</label>{{ form.birth_date }}</p>
-                </div>
-                <div class="col-md-6">
-                    <p><label for="id_email">Email:</label>{{ form.email }}</p>
-
-                    <p><label for="id_jabber">Jabber:</label>{{ form.jabber }}
+                    <div class="row" align="right">
+                        <div class="col-xs-3"><label for="id_name">Name:</label>
+                        </div>
+                        <div class="col-xs-3">{{ form.name }}</div>
+                    </div>
                     </p>
 
-                    <p><label for="id_skype">Skype:</label>{{ form.skype }}</p>
+                    <p>
+
+                    <div class="row" align="right">
+                        <div class="col-xs-3"><label for="id_surname">Last
+                            name:</label></div>
+                        <div class="col-xs-3">{{ form.surname }}</div>
+                    </div>
+                    </p>
+
+                    <p>
+
+                    <div class="row" align="right">
+                        <div class="col-xs-3"><label for="id_birth_date">Date of
+                            birth:</label></div>
+                        <div class="col-xs-3">{{ form.birth_date }}</div>
+                    </div>
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <p>
+
+                    <div class="row" align="right">
+                        <div class="col-xs-3"><label
+                                for="id_email">Email:</label></div>
+                        <div class="col-xs-3">{{ form.email }}</div>
+                    </div>
+                    </p>
+
+                    <p>
+
+                    <div class="row" align="right">
+                        <div class="col-xs-3"><label
+                                for="id_jabber">Jabber:</label></div>
+                        <div class="col-xs-3">{{ form.jabber }}</div>
+                    </div>
+                    </p>
+
+                    <p>
+
+                    <div class="row" align="right">
+                        <div class="col-xs-3"><label
+                                for="id_skype">Skype:</label></div>
+                        <div class="col-xs-3">{{ form.skype }}</div>
+                    </div>
+                    </p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-5">
-                    <label for="id_photo">Photo:</label><div>{{ form.photo }}</div>
+                    <label for="id_photo">Photo:</label>
+
+                    <div>{{ form.photo }}</div>
                     </br>
                     {% if form.photo.value != '' %}
-                        <img class="image" src='{{ MEDIA_URL }}{{ form.photo.value }}' height="200" width="200">
+                        <img class="image"
+                             src='{{ MEDIA_URL }}{{ form.photo.value }}'
+                             height="200" width="200">
+                    {% else %}
+                        <table width='200px' border="2" height="200px">
+                            <tr align="right" valign="top">
+                                <td></td>
+                            </tr>
+                        </table>
                     {% endif %}
                 </div>
                 <div class="col-md-7">
@@ -51,7 +100,7 @@
                 </div>
             </div>
             <div class="row">
-                 <div id="loading" style="display:none;">
+                <div id="loading" style="display:none;">
                     <span>loading...</span>
                 </div>
                 <div id="success" style="display:none;">
@@ -66,7 +115,7 @@
                        href="{% url 'contact' %}">Cancel</a>
                 </p>
         </form>
-            <hr>
+        <hr>
     </div>
     <a href="{% url 'requests' %}">requests</a>
 {% endblock %}

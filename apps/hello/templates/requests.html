@@ -7,29 +7,31 @@
 {% block extra_head %}
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="{% static "js/requests.js" %}"></script>
 {% endblock extra_head %}
 
 {% block content %}
     <h1>Requests</h1>
     <div id='div_table1'>
-    <table class="table table-hover table-striped" id="req-table">
-        <thead>
-        <tr>
-            <th>10 Last Requests</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for req in request_log %}
+        <table class="table table-hover table-striped" id="req-table">
+            <thead>
             <tr>
-                <td id="request-id">{{ req.id }}</td>
-                <td>{{ req.method }}</td>
-                <td>{{ req.path }}</td>
-                <td>{{ req.time }}</td>
-                <td>{{ req.remote_addr }}</td>
+                <th>10 Last Requests</th>
             </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for req in request_log %}
+                <tr>
+                    <td id="request-id">{{ req.id }}</td>
+                    <td>{{ req.method }}</td>
+                    <td>{{ req.path }}</td>
+                    <td>{{ req.time }}</td>
+                    <td>{{ req.remote_addr }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
 {% endblock %}
