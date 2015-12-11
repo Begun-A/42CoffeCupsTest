@@ -38,7 +38,7 @@ class TestContactData(TestCase):
                           skype='j-snow',
                           jabber='snow@khavr.com',
                           other='Winterfell',
-                          bio='Jon Snow fights with white walker')
+                          bio='John Snow fights with white walker')
         contact.save()
         contacts = Contact.objects.all()
         self.assertEqual(Contact.objects.count(), 2)
