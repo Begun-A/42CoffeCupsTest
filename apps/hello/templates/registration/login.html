@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Contacts{% endblock title %}
+
+{% block extra_head %}
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css">
+{% endblock extra_head %}
+
+{% block content %}
+  <div class="wrapper col-md-3">
+    <form action="." method="post" class="form-signin">{% csrf_token %}
+      <h2 class="form-signin-heading">Please login</h2>
+        {% if form.errors %}
+            <div>Login Name and/or Password Not Recognized</div>
+        {% endif %}
+      <input type="text" class="form-control" name="username" placeholder="Login Name" required="" autofocus="" />
+      <input type="password" class="form-control" name="password" placeholder="Password" required=""/>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+    </form>
+  </div>
+
+{% endblock content %}

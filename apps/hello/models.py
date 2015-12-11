@@ -1,4 +1,5 @@
 from django.db import models
+from PIL import Image
 
 
 # Create your models here.
@@ -20,6 +21,24 @@ class Contact(models.Model):
     jabber = models.EmailField()
     other = models.TextField(max_length=50, blank=True, null=True, )
     bio = models.TextField(max_length=256, blank=True, null=True)
+    photo = models.ImageField(upload_to='images', blank=True, null=True,
+                              default='/')
+
+    def save(self):
+        """Save Photo after ensuring it is not blank.  Resize as needed.
+        """
+        size = (200, 200)
+        if not self.id and not self.photo:
+            return
+        super(Contact, self).save()
+        try:
+            filename = self.photo.path
+            image = Image.open(filename)
+
+            image.thumbnail(size, Image.ANTIALIAS)
+            image.save(filename)
+        except:
+            pass
 
 
 class RequestLog(models.Model):

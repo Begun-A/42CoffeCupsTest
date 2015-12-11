@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Edit contact data{% endblock %}
+{% block extra_head %}
+    {{ form.media }}
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+    <script type="text/javascript"
+            src="{{ STATIC_URL }}js/edit_form.js"></script>
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <h2>42 Coffee Cups Test Assignment</h2>
+
+        <form enctype="multipart/form-data" id="ajaxform"
+              method="POST">{% csrf_token %}
+            <div class="row">
+                <div class="col-md-6">
+                    <p><label for="id_name">Name:</label>{{ form.name }}</p>
+
+                    <p><label for="id_surname">Last
+                        name:</label>{{ form.surname }}</p>
+
+                    <p><label for="id_birth_date">Date of
+                        birth:</label>{{ form.birth_date }}</p>
+                </div>
+                <div class="col-md-6">
+                    <p><label for="id_email">Email:</label>{{ form.email }}</p>
+
+                    <p><label for="id_jabber">Jabber:</label>{{ form.jabber }}
+                    </p>
+
+                    <p><label for="id_skype">Skype:</label>{{ form.skype }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <label for="id_photo">Photo:</label><div>{{ form.photo }}</div>
+                    </br>
+                    {% if form.photo.value != '' %}
+                        <img class="image" src='{{ MEDIA_URL }}{{ form.photo.value }}' height="200" width="200">
+                    {% endif %}
+                </div>
+                <div class="col-md-7">
+                    <p><label for="id_other">Other
+                        contacts:</label></br>{{ form.other }}</p>
+
+                    <p><label for="id_bio">Bio:</label></br>{{ form.bio }}
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                 <div id="loading" style="display:none;">
+                    <span>loading...</span>
+                </div>
+                <div id="success" style="display:none;">
+                    <span>Changes have been saved.</span>
+                </div>
+                <div id="form_error" style="display:none;">
+                    <span>Errors are found. Changes have not been saved.</span>
+                </div>
+                <p>
+                    <input class="btn btn-primary" type="submit" value="Save"/>
+                    <a class="btn btn-default"
+                       href="{% url 'contact' %}">Cancel</a>
+                </p>
+        </form>
+            <hr>
+    </div>
+    <a href="{% url 'requests' %}">requests</a>
+{% endblock %}
