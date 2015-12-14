@@ -37,7 +37,15 @@ class FormEditTest(TestCase):
 
     def test_edit_form_post(self):
         """Test edit form post on validation and required fields"""
+        response = self.client.post(self.url, {'name': 'Mike'})
+        self.assertEqual(response.status_code, 302)
+
         self.client.login(username='admin', password='admin')
+        response = self.client.post(self.url, {'name': 'Mike',
+                                               'birth_date': '2000-12-31'})
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.context['form']['birth_date'].errors, [])
+        self.assertEqual(response.context['form']['name'].errors, [])
 
         response = self.client.post(self.url, {'birth_date': '2000-1231'})
         self.assertEqual(response.status_code, 200)
