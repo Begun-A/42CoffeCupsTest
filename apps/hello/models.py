@@ -52,6 +52,7 @@ class RequestLog(models.Model):
     path = models.CharField(max_length=1024)
     remote_addr = models.IPAddressField()
     time = models.DateTimeField(auto_now=True)
+    priority = models.IntegerField(default=1)
 
 
 class ObjectsDBLog(models.Model):
