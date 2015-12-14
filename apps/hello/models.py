@@ -24,13 +24,13 @@ class Contact(models.Model):
     photo = models.ImageField(upload_to='images', blank=True, null=True,
                               default='/')
 
-    def save(self):
+    def save(self, *args, **kwargs):
         """Save Photo after ensuring it is not blank.  Resize as needed.
         """
         size = (200, 200)
         if not self.id and not self.photo:
             return
-        super(Contact, self).save()
+        super(Contact, self).save(*args, **kwargs)
         try:
             filename = self.photo.path
             image = Image.open(filename)
@@ -52,3 +52,12 @@ class RequestLog(models.Model):
     path = models.CharField(max_length=1024)
     remote_addr = models.IPAddressField()
     time = models.DateTimeField(auto_now=True)
+
+
+class ObjectsDBLog(models.Model):
+    action = models.CharField(max_length=15)
+    model = models.CharField(max_length=30)
+    date_time = models.DateTimeField(auto_now=True)
+
+    def __unicode__(self):
+        return u'{0} {1}'.format(self.model, self.action)
