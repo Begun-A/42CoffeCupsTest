@@ -17,10 +17,6 @@ function initAjaxForm() {
             for (error in errors) {
                 var id = '#id_' + error;
                 $(id).parent('p').append(errors[error]);
-                console.log(id);
-                console.log(errors[error]);
-                console.log($(id).prepend(errors[error]))
-
             }
             setTimeout(function () {
                 $("#form_error").hide();
