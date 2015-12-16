@@ -6,6 +6,7 @@ function initUpdateRequests() {
         'type': 'GET',
         'dataType': "html",
         'success': function (data, status, xhr) {
+            console.log(window.location.href);
             var table = $('#div_table1'), html = $(data), new_table = html.find('table');
             var n = new_table.find('#request-id').html() - table.find('#request-id').html();
             table.find('table').html(new_table.html());
