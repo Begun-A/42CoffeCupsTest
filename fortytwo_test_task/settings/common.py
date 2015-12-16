@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 import os
 import sys
 
+from django.conf import global_settings
+
 PROJECT_DIR = os.path.dirname(os.path.dirname(__file__))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
@@ -103,19 +105,10 @@ MEDIA_URL = '/uploads/'
 # Example: "/home/media/media.lawrence.com/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-STATICFILES_FINDERS = [
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-]
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
-
-STATICFILES_FINDERS = [
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-]
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -142,3 +135,9 @@ SOUTH_TESTS_MIGRATE = False
 FIXTURE_DIRS = (
     os.path.join(BASE_DIR, 'apps/hello/fixtures'),
 )
+
+TEMPLATE_CONTEXT_PROCESSORS = \
+    global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
+        "django.core.context_processors.request",
+        "apps.hello.context_processors.settings_proc"
+    )
