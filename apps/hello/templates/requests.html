@@ -13,13 +13,21 @@
 {% endblock extra_head %}
 
 {% block content %}
+    {% with order_by=request.GET.order_by reverse=request.GET.reverse %}
     <h1>Requests</h1>
     <div id='div_table1'>
         <table class="table table-hover table-striped" id="req-table">
             <thead>
             <tr>
-                <th>ID</th>
-                <th><a href="{% url 'requests' %}?order_by=priority{% if request_log.GET.reverse != '1' %}&amp;reverse=1{% endif %}">Priority &uarr;&darr;</a></th>
+                <th><a href="{% url 'requests' %}">ID</a></th>
+                <th>
+                    <a href="{% url 'requests' %}?order_by=priority{% if request.GET.reverse != '1' %}&amp;reverse=1{% endif %}">Priority
+                        {% if order_by == 'priority' and reverse != '1' %}
+                            &uarr;
+                        {% elif order_by == 'priority' and reverse == '1' %}
+                            &darr;
+                        {% endif %}</a>
+                </th>
                 <th>Method</th>
                 <th>Path</th>
                 <th>Time</th>
@@ -40,4 +48,5 @@
             </tbody>
         </table>
     </div>
+    {% endwith %}
 {% endblock %}
