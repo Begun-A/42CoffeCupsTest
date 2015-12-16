@@ -82,7 +82,8 @@
                     {% if form.photo.value != '' %}
                         <img class="image"
                              src='{{ MEDIA_URL }}{{ form.photo.value }}'
-                             height="200" width="200">
+                             height="200" width="200"
+                             onerror="this.onerror=null;this.src='{{ MEDIA_URL }}/images/does_not_exist.png';">
                     {% else %}
                         <table width='200px' border="2" height="200px">
                             <tr align="right" valign="top">
