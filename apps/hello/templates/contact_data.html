@@ -35,8 +35,10 @@
                     </div>
                     <div><b>Photo: </b><br>
                         {% if contact.photo %}
-                            <img src="{{ MEDIA_URL }}{{ contact.photo }}"
-                                 width="200" height="200"/>
+                            <img class="image"
+                                 src='{{ MEDIA_URL }}{{ contact.photo }}'
+                                 height="200" width="200"
+                                 onerror="this.onerror=null;this.src='{{ STATIC_URL }}images/does_not_exist.png';">
                         {% else %}
                             <table width='200px' border="2" height="200px">
                                 <tr align="right" valign="top">

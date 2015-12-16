@@ -22,22 +22,18 @@ def requests(request):
 @login_required
 def edit_form_contact(request, id):
     contacts = Contact.objects.get(pk=id)
-    if request.POST:
+    if request.POST and request.is_ajax():
         form = ContactForm(request.POST, request.FILES, instance=contacts)
         if form.is_valid():
             contact = form.save(commit=False)
             contact.save()
-            if request.is_ajax():
-                return HttpResponse('OK')
+            return HttpResponse('OK')
         else:
-            if request.is_ajax():
-                errors_dict = {}
-                if form.errors:
-                    for e in form.errors:
-                        error = form.errors[e]
-                        errors_dict[e] = unicode(error)
-
-                return HttpResponseBadRequest(json.dumps(errors_dict))
+            errors_dict = {}
+            for e in form.errors:
+                error = form.errors[e]
+                errors_dict[e] = unicode(error)
+            return HttpResponseBadRequest(json.dumps(errors_dict))
     else:
         form = ContactForm(instance=contacts)
 
