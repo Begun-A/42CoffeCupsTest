@@ -6,7 +6,7 @@ from apps.hello.models import Contact, ObjectsDBLog
 class ObjectsDBLogTest(TestCase):
     """Tests for signals
     """
-    fixtures = ['hello_fixture.json']
+    fixtures = ['initial_data.json']
 
     def test_object_create(self):
         """Test signal, when objects created

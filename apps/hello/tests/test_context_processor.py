@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 
 class ContextProcessorsTest(TestCase):
     """Tests context processors"""
-    fixtures = ['hello_fixture.json']
+    fixtures = ['initial_data.json']
 
     def setUp(self):
         self.client = Client()

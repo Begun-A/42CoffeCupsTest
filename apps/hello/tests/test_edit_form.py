@@ -1,3 +1,5 @@
+import json
+
 from django.test import TestCase, Client
 from django.core.urlresolvers import reverse
 
@@ -7,7 +9,7 @@ from ..models import Contact
 class FormEditTest(TestCase):
     """Tests form which edit contact data.
     """
-    fixtures = ['hello_fixture.json']
+    fixtures = ['initial_data.json']
 
     def setUp(self):
         self.client = Client()
@@ -35,18 +37,46 @@ class FormEditTest(TestCase):
         self.assertContains(response, contact.email, 1)
         self.assertContains(response, contact.skype, 1)
 
-    def test_edit_form_post(self):
-        """Test edit form post on validation and required fields"""
+    def test_edit_form_post_valid_data(self):
+        """Test edit form post with valid data
+        """
+        response = self.client.post(self.url, {'name': 'Mike'},
+                                    HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertEqual(response.status_code, 302)
+
         self.client.login(username='admin', password='admin')
-
-        response = self.client.post(self.url, {'birth_date': '2000-1231'})
+        response = self.client.post(self.url, {'name': 'Mike',
+                                               'email': 'a.mike@live.com',
+                                               'birth_date': '2000-12-31',
+                                               'jabber': 'begun-m@khavr.com'},
+                                    HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.context['form']['birth_date'].errors,
-                         [u'Enter a valid date.'])
+        contact = Contact.objects.first()
+        self.assertEqual(contact.name, 'Mike')
+        self.assertEqual(contact.email, 'a.mike@live.com')
+        self.assertEqual(contact.birth_date.isoformat(), '2000-12-31')
+        self.assertEqual(contact.jabber, 'begun-m@khavr.com')
 
-        response = self.client.post(self.url, {'name': '', 'email': ''})
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.context['form']['name'].errors,
-                         [u'This field is required.'])
-        self.assertEqual(response.context['form']['email'].errors,
-                         [u'This field is required.'])
+    def test_edit_form_post_not_valid_data(self):
+        """Test edit form post with not valid data
+        """
+        response = self.client.post(self.url, {'name': 'Mike'},
+                                    HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertEqual(response.status_code, 302)
+
+        self.client.login(username='admin', password='admin')
+        response = self.client.post(self.url, {'name': '',
+                                               'email': '',
+                                               'birth_date': '',
+                                               'jabber': ''},
+                                    HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertEqual(response.status_code, 400)
+        content = json.loads(response.content)
+        for key in content.keys():
+            self.assertIn(u'This field is required.', content[key])
+
+        response = self.client.post(self.url, {'birth_date': '2000-1231'},
+                                    HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertEqual(response.status_code, 400)
+        content = json.loads(response.content)
+        self.assertIn(u'Enter a valid date.', content['birth_date'])
