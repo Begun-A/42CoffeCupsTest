@@ -3,9 +3,9 @@ from django.dispatch import receiver
 
 from models import ObjectsDBLog
 
+
 @receiver(post_save)
 def log_objects_updated_added_event(sender, created, **kwargs):
-
     if sender.__name__ == 'ObjectsDBLog':
         return
 
@@ -15,7 +15,6 @@ def log_objects_updated_added_event(sender, created, **kwargs):
 
 @receiver(post_delete)
 def log_objects_delete_event(sender, **kwargs):
-
     if sender.__name__ == 'ObjectsDBLog':
         return
 
