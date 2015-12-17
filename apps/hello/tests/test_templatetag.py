@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 class TemlateTagTest(TestCase):
     """Tests temlplate tags
     """
-    fixtures = ['hello_fixture.json']
+    fixtures = ['initial_data.json']
 
     def setUp(self):
         self.client = Client()

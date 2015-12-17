@@ -9,7 +9,7 @@ from ..models import Contact
 class FormEditTest(TestCase):
     """Tests form which edit contact data.
     """
-    fixtures = ['hello_fixture.json']
+    fixtures = ['initial_data.json']
 
     def setUp(self):
         self.client = Client()
