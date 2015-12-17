@@ -55,8 +55,6 @@ class RequestLog(models.Model):
 
 
 class ObjectsDBLog(models.Model):
-    class Meta:
-        db_table = 'ObjectsDBLog'
     action = models.CharField(max_length=15)
     model = models.CharField(max_length=30)
     date_time = models.DateTimeField(auto_now=True)
