@@ -1,48 +1,21 @@
-from django.test import TestCase
+from django.db.models.signals import post_delete, post_save
+from django.dispatch import receiver
 
-from apps.hello.models import Contact, ObjectsDBLog
+from models import ObjectsDBLog
 
 
-class ObjectsDBLogTest(TestCase):
-    """Tests for signals
-    """
-    fixtures = ['hello_fixture.json']
+@receiver(post_save)
+def log_objects_updated_added_event(sender, created, **kwargs):
+    if sender.__name__ == 'ObjectsDBLog':
+        return
 
-    def test_object_create(self):
-        """Test signal, when objects created
-        """
-        ObjectsDBLog.objects.all().delete()
-        self.assertEqual(ObjectsDBLog.objects.all().count(), 0)
-        Contact.objects.create(name='John',
-                               surname='Snow',
-                               birth_date='1992-12-01',
-                               email='snow.j@gmail.com',
-                               skype='j-snow',
-                               jabber='snow@khavr.com',
-                               other='Winterfell',
-                               bio='John Snow fights with white walker')
-        self.assertEqual(Contact.objects.all().count(), 2)
-        self.assertEqual(ObjectsDBLog.objects.all().count(), 1)
-        self.assertEqual(ObjectsDBLog.objects.get(pk=1).action, 'created')
+    action = 'created' if created else 'updated'
+    ObjectsDBLog.objects.create(model=sender.__name__, action=action)
 
-    def test_object_update(self):
-        """Test signal, when objects updated
-        """
-        ObjectsDBLog.objects.all().delete()
-        contact = Contact.objects.get(pk=1)
-        self.assertEqual(contact.name, 'Oleksandr')
-        contact.name = 'Mike'
-        contact.save()
-        contact = Contact.objects.get(pk=1)
-        self.assertEqual(contact.name, 'Mike')
-        self.assertEqual(ObjectsDBLog.objects.all().count(), 1)
-        self.assertEqual(ObjectsDBLog.objects.get(pk=1).action, 'updated')
 
-    def test_object_delete(self):
-        """Test signal, when objects deleted
-        """
-        ObjectsDBLog.objects.all().delete()
-        self.assertEqual(Contact.objects.all().count(), 1)
-        Contact.objects.all().delete()
-        self.assertEqual(ObjectsDBLog.objects.all().count(), 1)
-        self.assertEqual(ObjectsDBLog.objects.get(pk=1).action, 'deleted')
+@receiver(post_delete)
+def log_objects_delete_event(sender, **kwargs):
+    if sender.__name__ == 'ObjectsDBLog':
+        return
+
+    ObjectsDBLog.objects.create(model=sender.__name__, action='deleted')
