@@ -7,8 +7,6 @@ from django.db import models
 class Migration(DataMigration):
 
     def forwards(self, orm):
-        from django.core.management import call_command
-        call_command("loaddata", "hello_fixture.json")
         "Write your forwards methods here."
         # Note: Don't use "from appname.models import ModelName". 
         # Use orm.ModelName to refer to models in this application,
@@ -26,9 +24,25 @@ class Migration(DataMigration):
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'jabber': ('django.db.models.fields.EmailField', [], {'max_length': '75'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '20'}),
-            'other': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True', 'blank': 'True'}),
+            'other': ('django.db.models.fields.TextField', [], {'max_length': '50', 'null': 'True', 'blank': 'True'}),
+            'photo': ('django.db.models.fields.files.ImageField', [], {'default': "'/'", 'max_length': '100', 'null': 'True', 'blank': 'True'}),
             'skype': ('django.db.models.fields.CharField', [], {'max_length': '20', 'null': 'True', 'blank': 'True'}),
             'surname': ('django.db.models.fields.CharField', [], {'default': "''", 'max_length': '20', 'blank': 'True'})
+        },
+        u'hello.objectsdblog': {
+            'Meta': {'object_name': 'ObjectsDBLog'},
+            'action': ('django.db.models.fields.CharField', [], {'max_length': '15'}),
+            'date_time': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'model': ('django.db.models.fields.CharField', [], {'max_length': '30'})
+        },
+        u'hello.requestlog': {
+            'Meta': {'object_name': 'RequestLog', 'db_table': "'RequestLog'"},
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'method': ('django.db.models.fields.CharField', [], {'max_length': '20'}),
+            'path': ('django.db.models.fields.CharField', [], {'max_length': '1024'}),
+            'remote_addr': ('django.db.models.fields.IPAddressField', [], {'max_length': '15'}),
+            'time': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'})
         }
     }
 
