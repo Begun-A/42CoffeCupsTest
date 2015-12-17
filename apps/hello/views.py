@@ -6,8 +6,7 @@ from django.contrib.auth.decorators import login_required
 
 from apps.hello.models import Contact, RequestLog
 from forms import ContactForm
-import signals  # flake8: noqa
-
+import signals  # flake8: noqa00
 
 def contact_data(request):
     contact = Contact.objects.first()
