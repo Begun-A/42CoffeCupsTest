@@ -15,8 +15,13 @@ def contact_data(request):
 
 
 def requests(request):
-    request_log = RequestLog.objects.order_by('time').reverse()[:10]
-    return render(request, 'requests.html', {'request_log': request_log})
+    request_log = RequestLog.objects.order_by('-time')
+    order_by = request.GET.get('order_by', '')
+    if order_by == 'priority':
+        request_log = request_log.order_by(order_by)
+    elif order_by == '-priority':
+        request_log = request_log.order_by(order_by)
+    return render(request, 'requests.html', {'request_log': request_log[:10]})
 
 
 @login_required

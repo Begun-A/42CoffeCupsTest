@@ -13,25 +13,40 @@
 {% endblock extra_head %}
 
 {% block content %}
-    <h1>Requests</h1>
-    <div id='div_table1'>
-        <table class="table table-hover table-striped" id="req-table">
-            <thead>
-            <tr>
-                <th>10 Last Requests</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for req in request_log %}
+    {% with order_by=request.GET.order_by reverse=request.GET.reverse %}
+        <h1>Requests</h1>
+        <div id='div_table1'>
+            <table class="table table-hover table-striped" id="req-table">
+                <thead>
                 <tr>
-                    <td id="request-id">{{ req.id }}</td>
-                    <td>{{ req.method }}</td>
-                    <td>{{ req.path }}</td>
-                    <td>{{ req.time }}</td>
-                    <td>{{ req.remote_addr }}</td>
+                    <th>ID</th>
+                    <th>
+                        <a href="{% url 'requests' %}?order_by={% if request.GET.order_by != 'priority' %}priority{% else %}-priority{% endif %}">Priority
+                            {% if order_by == 'priority' %}
+                                &darr;
+                            {% elif order_by == '-priority' %}
+                                &uarr;
+                            {% endif %}</a>
+                    </th>
+                    <th>Method</th>
+                    <th>Path</th>
+                    <th><a href="{% url 'requests' %}">Time<a></a></th>
+                    <th>Address</th>
                 </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
+                </thead>
+                <tbody>
+                {% for req in request_log %}
+                    <tr>
+                        <td id="request-id">{{ req.id }}</td>
+                        <td>{{ req.priority }}</td>
+                        <td>{{ req.method }}</td>
+                        <td>{{ req.path }}</td>
+                        <td>{{ req.time }}</td>
+                        <td>{{ req.remote_addr }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endwith %}
 {% endblock %}
