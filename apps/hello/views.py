@@ -20,8 +20,8 @@ def requests(request):
     order_by = request.GET.get('order_by', '')
     if order_by == 'priority':
         request_log = request_log.order_by(order_by)
-        if request.GET.get('reverse', '') == '1':
-            request_log = request_log.reverse()
+    elif order_by == '-priority':
+        request_log = request_log.order_by(order_by)
     return render(request, 'requests.html', {'request_log': request_log[:10]})
 
 

@@ -58,16 +58,14 @@ class MiddlewareRequestLogsTests(TestCase):
         for i in range(10):
             self.assertEqual(response.context['request_log'][i], requests[i])
 
-        self.assertIn("/requests/?order_by=priority&amp;reverse=1",
-                      response.content)
-        response = self.client.get(
-            self.url_request + "?order_by=priority&amp;reverse=1")
-        requests = RequestLog.objects.order_by('-priority')[:10]
-        for i in range(10):
-            self.assertEqual(response.context['request_log'][i], requests[i])
-
         self.assertIn("/requests/?order_by=priority", response.content)
         response = self.client.get(self.url_request + "?order_by=priority")
         requests = RequestLog.objects.order_by('priority')[:10]
+        for i in range(10):
+            self.assertEqual(response.context['request_log'][i], requests[i])
+
+        self.assertIn("/requests/?order_by=-priority", response.content)
+        response = self.client.get(self.url_request + "?order_by=-priority")
+        requests = RequestLog.objects.order_by('-priority')[:10]
         for i in range(10):
             self.assertEqual(response.context['request_log'][i], requests[i])
