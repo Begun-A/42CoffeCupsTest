@@ -19,7 +19,7 @@
         <table class="table table-hover table-striped" id="req-table">
             <thead>
             <tr>
-                <th><a href="{% url 'requests' %}">ID</a></th>
+                <th>ID</th>
                 <th>
                     <a href="{% url 'requests' %}?order_by=priority{% if request.GET.reverse != '1' %}&amp;reverse=1{% endif %}">Priority
                         {% if order_by == 'priority' and reverse != '1' %}
@@ -30,7 +30,7 @@
                 </th>
                 <th>Method</th>
                 <th>Path</th>
-                <th>Time</th>
+                <th><a href="{% url 'requests' %}">Time<a></a></th>
                 <th>Address</th>
             </tr>
             </thead>
