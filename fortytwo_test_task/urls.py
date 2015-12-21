@@ -12,6 +12,7 @@ urlpatterns = patterns('apps.hello.views',
                        url(r'^requests/$', 'requests', name='requests'),
                        url(r'^edit_form/(?P<id>\d+)/$', 'edit_form_contact',
                            name='edit_form'),
+                       url(r'^add_team/$', 'create_team_form', name='add_team')
                        )
 
 urlpatterns += patterns('',

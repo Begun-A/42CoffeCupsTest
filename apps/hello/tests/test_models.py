@@ -1,5 +1,5 @@
 from django.test import TestCase
-from ..models import Contact, RequestLog
+from ..models import Contact, RequestLog, Team
 
 # Create your tests here.
 
@@ -19,3 +19,9 @@ class ContactModelTests(TestCase):
         """
         req = RequestLog(pk='1', method='GET', path='/requests/')
         self.assertEqual(unicode(req), u'1 GET /requests/')
+
+    def test_unicode_team(self):
+        """Test unicode Team model
+        """
+        team = Team(title='DjangoTeam', notes='5 developers')
+        self.assertEqual(unicode(team), u'DjangoTeam')

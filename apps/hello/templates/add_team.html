@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Edit contact data{% endblock %}
+{% block extra_head %}
+    {{ form.media }}
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+    <script type="text/javascript"
+            src="{{ STATIC_URL }}js/edit_form.js"></script>
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+        <h2>42 Coffee Cups Test Assignment</h2>
+        </div>
+        <form enctype="multipart/form-data" id="ajaxform"
+              method="POST">{% csrf_token %}
+            <div class="row">
+                <p><label for="id_name">Title:</label>
+                    {{ form.title }}</p>
+                {{ form.title.errors }}
+            </div>
+            <div class="row">
+                <p><label for="id_other">Notes:</label></br></p>
+                <p>{{ form.notes }}</p>
+                {{ form.notes.errors }}
+            </div>
+            <p>{{ form.errors.success }}</p>
+            <div class="row">
+                <p>
+                    <input class="btn btn-primary" type="submit" value="Save"/>
+                    <a class="btn btn-default"
+                       href="{% url 'contact' %}">Cancel</a>
+                </p>
+            </div>
+        </form>
+        <hr>
+        <div class="row">
+            <a href="{% url 'requests' %}">requests</a>
+        </div>
+    </div>
+{% endblock %}

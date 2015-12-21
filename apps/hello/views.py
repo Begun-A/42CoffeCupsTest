@@ -1,12 +1,15 @@
 import json
 
+from django.core.urlresolvers import reverse
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseBadRequest, \
+    HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
 from apps.hello.models import Contact, RequestLog
-from forms import ContactForm
+from forms import ContactForm, TeamForm
 import signals  # flake8: noqa00
+
 
 def contact_data(request):
     contact = Contact.objects.first()
@@ -32,6 +35,7 @@ def edit_form_contact(request, id):
         if form.is_valid():
             contact = form.save(commit=False)
             contact.save()
+            form.save_m2m()
             return HttpResponse('OK')
         else:
             errors_dict = {}
@@ -41,5 +45,16 @@ def edit_form_contact(request, id):
             return HttpResponseBadRequest(json.dumps(errors_dict))
     else:
         form = ContactForm(instance=contacts)
-
     return render(request, 'edit_form.html', {'form': form})
+
+
+@login_required
+def create_team_form(request):
+    if request.POST:
+        form = TeamForm(request.POST)
+        if form.is_valid():
+            form.save()
+            form.errors['success'] = 'Saved'
+    else:
+        form = TeamForm()
+    return render(request, 'add_team.html', {'form': form})

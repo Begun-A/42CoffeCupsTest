@@ -3,6 +3,14 @@ from PIL import Image
 
 
 # Create your models here.
+class Team(models.Model):
+    title = models.CharField(max_length=40, unique=True)
+    notes = models.TextField(max_length=256, blank=True, null=True)
+
+    def __unicode__(self):
+        return u'{0}'.format(self.title)
+
+
 class Contact(models.Model):
     class Meta:
         db_table = 'Contact'
@@ -23,6 +31,7 @@ class Contact(models.Model):
     bio = models.TextField(max_length=256, blank=True, null=True)
     photo = models.ImageField(upload_to='images', blank=True, null=True,
                               default='/')
+    contact_team = models.ManyToManyField(Team, blank=True, null=True)
 
     def save(self, *args, **kwargs):
         """Save Photo after ensuring it is not blank.  Resize as needed.
