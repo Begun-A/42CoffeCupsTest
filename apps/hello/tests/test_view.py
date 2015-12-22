@@ -1,7 +1,7 @@
 from django.test import TestCase, Client
 from django.core.urlresolvers import reverse
 
-from ..models import Contact
+from ..models import Contact, Team
 
 
 class TestContactData(TestCase):
@@ -31,6 +31,10 @@ class TestContactData(TestCase):
     def test_more_then_one_entry_in_db(self):
         """Test contact view, when more then one entry in db
         """
+        t1 = Team(title='team1')
+        t2 = Team(title='team2')
+        t1.save()
+        t2.save()
         contact = Contact(name='John',
                           surname='Snow',
                           birth_date='1992-12-01',
@@ -40,13 +44,17 @@ class TestContactData(TestCase):
                           other='Winterfell',
                           bio='John Snow fights with white walker')
         contact.save()
+        contact.contact_team.add(t2)
         contacts = Contact.objects.all()
+        contacts[0].contact_team.add(t1)
         self.assertEqual(Contact.objects.count(), 2)
         response = self.client.get(self.url)
-        self.assertNotEqual(contacts[1], response.context['contact'])
         self.assertEqual(contacts[0], response.context['contact'])
         self.assertContains(response, 'Skype:', 1)
+        self.assertContains(response, t1.title, 1)
+        self.assertNotEqual(contacts[1], response.context['contact'])
         self.assertNotContains(response, 'John')
+        self.assertNotContains(response, t2.title)
 
     def test_no_data_in_db(self):
         """Test contact view, when no data in db
